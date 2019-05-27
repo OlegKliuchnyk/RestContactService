@@ -2,7 +2,7 @@ package com.example.rest.service.contact.service.impl;
 
 import com.example.rest.service.contact.dto.ContactDto;
 import com.example.rest.service.contact.service.ContactCacheService;
-import com.example.rest.service.contact.service.ContactCachedFilterService;
+import com.example.rest.service.contact.service.ContactFilterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,11 +11,11 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @Service
-public class DefaultCachedFilterService implements ContactCachedFilterService {
+public class DefaultFilterService implements ContactFilterService {
     private ContactCacheService contactCacheService;
 
     @Autowired
-    public DefaultCachedFilterService(ContactCacheService contactCacheService) {
+    public DefaultFilterService(ContactCacheService contactCacheService) {
         this.contactCacheService = contactCacheService;
     }
 

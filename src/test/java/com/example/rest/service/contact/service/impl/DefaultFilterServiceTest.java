@@ -1,31 +1,35 @@
 package com.example.rest.service.contact.service.impl;
 
+import com.example.rest.service.contact.config.TestConf;
 import com.example.rest.service.contact.dto.ContactDto;
 import com.example.rest.service.contact.entity.Contact;
-import org.junit.Before;
+import com.example.rest.service.contact.service.ContactCacheService;
+import com.example.rest.service.contact.service.ContactFilterService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.util.Collections.singletonList;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
+
+@ActiveProfiles("test")
 @RunWith(SpringRunner.class)
-public class DefaultCachedFilterServiceTest {
+@ContextConfiguration(classes = {TestConf.class})
+public class DefaultFilterServiceTest {
+
     @MockBean
-    private DefaultContactCacheService cacheService;
+    private ContactCacheService cacheServiceMock;
 
-    private DefaultCachedFilterService cachedFilterService;
-
-    @Before
-    public void init() {
-        cachedFilterService = new DefaultCachedFilterService(cacheService);
-    }
+    @Autowired
+    private ContactFilterService cachedFilterService;
 
     @Test
     public void getContactsNotFound() {
@@ -33,7 +37,7 @@ public class DefaultCachedFilterServiceTest {
         lst.add(new Contact("ATest"));
         lst.add(new Contact("Anton"));
 
-        when(cacheService.getAllContacts()).thenReturn(lst);
+        when(cacheServiceMock.getAllContacts()).thenReturn(lst);
 
         List<ContactDto> expected = new ArrayList<>();
         List<ContactDto> actual = cachedFilterService.getContacts("^A.*$");
@@ -47,9 +51,7 @@ public class DefaultCachedFilterServiceTest {
         lst.add(new Contact("Test"));
         lst.add(new Contact("Name"));
 
-        when(cacheService.getAllContacts()).thenReturn(lst);
-
-
+        when(cacheServiceMock.getAllContacts()).thenReturn(lst);
         List<ContactDto> actual = cachedFilterService.getContacts("^A.*$");
 
         assertEquals(2, actual.size());

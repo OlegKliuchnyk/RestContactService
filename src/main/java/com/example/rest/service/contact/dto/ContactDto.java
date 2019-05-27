@@ -1,9 +1,9 @@
 package com.example.rest.service.contact.dto;
 
-import lombok.Data;
+import lombok.Value;
 
-@Data
+@Value
 public class ContactDto {
-    private final int id;
-    private final String name;
+    private int id;
+    private String name;
 }

@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -28,6 +29,7 @@ import static org.mockito.BDDMockito.given;
 
 import static java.util.Collections.singletonList;
 
+@ActiveProfiles("test")
 @RunWith(SpringRunner.class)
 @WebMvcTest
 public class RestContactControllerTest {

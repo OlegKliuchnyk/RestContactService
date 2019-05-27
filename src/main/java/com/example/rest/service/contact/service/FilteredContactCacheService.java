@@ -4,6 +4,6 @@ import com.example.rest.service.contact.dto.ContactDto;
 
 import java.util.List;
 
-public interface ContactService {
+public interface FilteredContactCacheService {
     List<ContactDto> getContacts(String nameFilter);
 }

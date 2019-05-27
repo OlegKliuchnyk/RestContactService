@@ -2,7 +2,7 @@ package com.example.rest.service.contact.controller;
 
 import com.example.rest.service.contact.dto.ContactDto;
 import com.example.rest.service.contact.model.CustomPageImpl;
-import com.example.rest.service.contact.service.ContactService;
+import com.example.rest.service.contact.service.FilteredContactCacheService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -19,10 +19,10 @@ import java.util.List;
 
 @RestController
 public class RestContactController {
-    private ContactService contactService;
+    private FilteredContactCacheService contactService;
 
     @Autowired
-    public RestContactController(ContactService contactService) {
+    public RestContactController(FilteredContactCacheService contactService) {
         this.contactService = contactService;
     }
 

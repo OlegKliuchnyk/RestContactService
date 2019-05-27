@@ -38,10 +38,8 @@ public class DefaultContactCacheService implements ContactCacheService {
     @Override
     public List<Contact> getAllContacts() {
 
-        double countItems = contactRepo.count();
-        int pages = (int) Math.ceil(countItems / totalItemsPerPage);
         List<Contact> contacts = new ArrayList<>();
-        Iterable<Contact> iterable = contactRepo.findAll(Sort.by(Sort.Direction.ASC, "id"));
+        Iterable<Contact> iterable = contactRepo.findAll();
         iterable.forEach(contacts::add);
 
         return contacts;
