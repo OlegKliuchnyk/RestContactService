@@ -29,9 +29,10 @@ public class DefaultFilteredContactCacheServiceTest {
 
     @Test
     public void getContacts() {
-        service.getContacts("");
-        service.getContacts("");
+        final String nameFilter = "^A.*$";
+        service.getContacts(nameFilter);
+        service.getContacts(nameFilter);
 
-        Mockito.verify(mock, Mockito.times(1)).getContacts("");
+        Mockito.verify(mock, Mockito.times(1)).getContacts(nameFilter);
     }
 }
