@@ -28,7 +28,9 @@ public class DefaultContactCacheServiceTest {
     public void getAllContacts() {
         service.getAllContacts();
         service.getAllContacts();
+        service.getAllContacts();
+        service.getAllContacts();
 
-        Mockito.verify(contactRepository, Mockito.times(1)).findAll();
+        Mockito.verify(contactRepository, Mockito.times(2)).findAll();
     }
 }
