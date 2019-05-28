@@ -19,6 +19,8 @@ public class DefaultContactCacheService implements ContactCacheService {
     private final ContactRepository contactRepo;
     @Value("${contact.total.items.per_page:100}")
     private int totalItemsPerPage;
+    @Value("${contact.db.total_items:10000")
+    private int totalItemsInsertToDb;
 
     @Autowired
     public DefaultContactCacheService(ContactRepository contactRepo) {
@@ -27,8 +29,12 @@ public class DefaultContactCacheService implements ContactCacheService {
 
     @PostConstruct
     private void init() {
-        int totalDbItems = 1_000;
-        for (int i = 0; i < totalDbItems; i++) {
+        insertToDb();
+        getAllContacts();
+    }
+
+    private void insertToDb() {
+        for (int i = 0; i < totalItemsInsertToDb; i++) {
             String name = RandomStringUtils.randomAlphanumeric(10);
             contactRepo.save(new Contact(name));
         }
@@ -44,4 +50,6 @@ public class DefaultContactCacheService implements ContactCacheService {
 
         return contacts;
     }
+
+
 }
