@@ -6,6 +6,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus(HttpStatus.BAD_REQUEST)
 public class IncorrectContactNameFilterException extends BaseException {
     public IncorrectContactNameFilterException(String message) {
-        super(message);
+        super(message, HttpStatus.BAD_REQUEST);
     }
 }

@@ -6,6 +6,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus(HttpStatus.NO_CONTENT)
 public class ContactsNotFoundException extends BaseException {
     public ContactsNotFoundException(String message) {
-        super(message);
+        super(message, HttpStatus.NO_CONTENT);
     }
 }
