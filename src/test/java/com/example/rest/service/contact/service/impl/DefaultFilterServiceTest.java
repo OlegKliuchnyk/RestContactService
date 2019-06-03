@@ -3,7 +3,7 @@ package com.example.rest.service.contact.service.impl;
 import com.example.rest.service.contact.config.TestConf;
 import com.example.rest.service.contact.dto.ContactDto;
 import com.example.rest.service.contact.entity.Contact;
-import com.example.rest.service.contact.service.ContactCacheService;
+import com.example.rest.service.contact.cache.ContactCache;
 import com.example.rest.service.contact.service.ContactFilterService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,7 +26,7 @@ import static org.mockito.Mockito.when;
 public class DefaultFilterServiceTest {
 
     @MockBean
-    private ContactCacheService cacheServiceMock;
+    private ContactCache cacheServiceMock;
 
     @Autowired
     private ContactFilterService cachedFilterService;

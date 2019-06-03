@@ -1,9 +1,9 @@
-package com.example.rest.service.contact.service;
+package com.example.rest.service.contact.cache;
 
 import com.example.rest.service.contact.entity.Contact;
 
 import java.util.List;
 
-public interface ContactCacheService {
+public interface ContactCache {
     List<Contact> getAllContacts();
 }
