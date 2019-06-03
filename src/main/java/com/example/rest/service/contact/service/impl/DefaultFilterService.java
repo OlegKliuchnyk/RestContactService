@@ -2,16 +2,11 @@ package com.example.rest.service.contact.service.impl;
 
 import com.example.rest.service.contact.cache.ContactCache;
 import com.example.rest.service.contact.dto.ContactDto;
-import com.example.rest.service.contact.entity.Contact;
-import com.example.rest.service.contact.repository.ContactRepository;
 import com.example.rest.service.contact.service.ContactFilterService;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -19,7 +14,6 @@ import java.util.stream.Collectors;
 @Service
 public class DefaultFilterService implements ContactFilterService {
     private final ContactCache contactCache;
-
 
     @Autowired
     public DefaultFilterService(ContactCache contactCache) {

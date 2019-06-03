@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
@@ -16,7 +15,7 @@ import java.util.List;
 
 @Component
 public class DefaultContactCache implements ContactCache {
-    private final ContactRepository contactRepo;
+    private final ContactRepository repository;
     @Value("${contact.total.items.per_page:100}")
     private int totalItemsPerPage;
 
@@ -24,8 +23,8 @@ public class DefaultContactCache implements ContactCache {
     private int totalItemsInsertToDb;
 
     @Autowired
-    public DefaultContactCache(ContactRepository contactRepo) {
-        this.contactRepo = contactRepo;
+    public DefaultContactCache(ContactRepository repository) {
+        this.repository = repository;
     }
 
     @PostConstruct
@@ -36,7 +35,7 @@ public class DefaultContactCache implements ContactCache {
     private void insertToDb() {
         for (int i = 0; i < totalItemsInsertToDb; i++) {
             String name = RandomStringUtils.randomAlphanumeric(10);
-            contactRepo.save(new Contact(name));
+            repository.save(new Contact(name));
         }
     }
 
@@ -45,7 +44,7 @@ public class DefaultContactCache implements ContactCache {
     public List<Contact> getAllContacts() {
 
         List<Contact> contacts = new ArrayList<>();
-        Iterable<Contact> iterable = contactRepo.findAll();
+        Iterable<Contact> iterable = repository.findAll();
         iterable.forEach(contacts::add);
 
         return contacts;
