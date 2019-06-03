@@ -1,6 +1,7 @@
 package com.example.rest.service.contact.controller;
 
 import com.example.rest.service.contact.dto.ContactDto;
+import com.example.rest.service.contact.exception.BaseException;
 import com.example.rest.service.contact.exception.ContactsNotFoundException;
 import com.example.rest.service.contact.exception.IncorrectContactNameFilterException;
 import com.example.rest.service.contact.model.CustomPageImpl;
@@ -57,9 +58,9 @@ public class RestContactController {
     }
 
     @ExceptionHandler({IncorrectContactNameFilterException.class, ContactsNotFoundException.class})
-    public ResponseEntity<ErrorResponse> handleErrors(Exception ex) {
-        ErrorResponse errorResponse = new ErrorResponse(ex.getLocalizedMessage());
+    public ResponseEntity<ErrorResponse> handleErrors(BaseException ex) {
+        ErrorResponse errorResponse = new ErrorResponse(ex.getStatus(), ex.getLocalizedMessage());
 
-        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(errorResponse, errorResponse.getStatus());
     }
 }
